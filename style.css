@@ -1,0 +1,626 @@
+:root { 
+  --bg: #f4f7ff;
+  --text: #1d1d1d;
+  /* Card normal */
+  --card: rgba(255, 255, 255, 0.75);
+  /* Card saat di-hover (lebih tebal/solid) */
+  --card-hover: rgba(255, 255, 255, 0.95);
+  --border: rgba(0, 0, 0, 0.08);
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --shadow: 0 10px 30px rgba(0,0,0,0.12);
+  --shadow-hover: 0 15px 35px rgba(79, 70, 229, 0.18);
+}
+
+body.dark {
+  --bg: #0b1220;
+  --text: #f5f5f5;
+  --card: rgba(30, 41, 59, 0.75);
+  --card-hover: rgba(30, 41, 59, 0.95);
+  --border: rgba(255, 255, 255, 0.12);
+  --primary: #818cf8;
+  --secondary: #22d3ee;
+  --shadow: 0 10px 30px rgba(0,0,0,0.4);
+  --shadow-hover: 0 15px 35px rgba(129, 140, 248, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ===============================
+   BASE & LAYOUT
+================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.container {
+  max-width: 1050px;
+  margin: auto;
+  padding: 25px;
+}
+
+/* FIX SCROLL KHUSUS HEADER STICKY */
+#beranda,
+#profil,
+#pendidikan,
+#tentang,
+#skill,
+#proyek,
+#kontak {
+  scroll-margin-top: 100px;
+}
+
+/* ===============================
+   HEADER & NAVIGATION
+================================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.6);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.4s ease;
+}
+
+body.dark header {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* EFEK HOVER NAVIGASI */
+nav a:hover {
+  background: rgba(79,70,229,0.15);
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+nav a.active {
+  background: rgba(79,70,229,0.20);
+  color: var(--primary);
+}
+
+.toggle-btn {
+  cursor: pointer;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  z-index: 10;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ===============================
+   CARDS & HOVER EFFECTS
+================================= */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease; /* Transisi halus untuk semua perubahan */
+}
+
+/* EFEK HOVER KARTU */
+.card:hover {
+  transform: translateY(-5px);
+  background: var(--card-hover);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.section-title {
+  font-size: 24px;
+  margin: 55px 0 25px; 
+  text-align: center;
+}
+
+/* ===============================
+   HERO SECTION (Atas & Bawah)
+================================= */
+.hero-top {
+  margin-top: 25px;
+}
+
+.profile-full {
+  width: 100%;
+}
+
+.profile-box {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* EFEK HOVER FOTO PROFIL ATAS */
+.profile-box img {
+  width: 125px; 
+  height: 125px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 4px solid rgba(79,70,229,0.4);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.profile-box img:hover {
+  transform: scale(1.08) rotate(3deg);
+  border-color: var(--primary);
+}
+
+.profile-info h2 {
+  font-size: 30px;
+  margin-bottom: 4px;
+}
+
+.profile-info small {
+  font-size: 18px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+/* Grid dihapus jika kamu pakai struktur HTML yang baru (Hero ringkas), 
+   tapi tetap disisakan untuk berjaga-jaga */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.info-item {
+  padding: 12px 15px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.4);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  min-height: 65px;
+  line-height: 1.4;
+  transition: background 0.3s ease;
+}
+
+body.dark .info-item {
+  background: rgba(30,41,59,0.5);
+}
+
+.info-item b {
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+/* HERO BAWAH (Tentang Saya / Halo) */
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+  margin-top: 18px;
+  align-items: stretch;
+}
+
+.vertical-photo-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.vertical-photo {
+  width: 100%;
+  height: 100%;
+  max-height: 330px;
+  object-fit: cover;
+  object-position: center 85%; 
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  transition: transform 0.4s ease;
+}
+
+.vertical-photo:hover {
+  transform: scale(1.03);
+}
+
+.halo-card h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.halo-card p {
+  font-size: 15px;
+  opacity: 0.88;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.mini-text {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 14px;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: rgba(6, 182, 212, 0.15);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ===============================
+   PROFIL SAYA (KONSISTEN DENGAN KARTU LAIN)
+================================= */
+.profil-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card); /* Menggunakan variabel card agar sama */
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow); /* Memberikan shadow agar seragam */
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  margin-bottom: 30px;
+}
+
+/* Efek Hover agar sama dengan kartu lainnya */
+.profil-table:hover {
+  transform: translateY(-5px);
+  background: var(--card-hover);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.profil-table td {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text);
+  transition: background-color 0.3s ease;
+}
+
+/* Menghapus border bawah pada baris terakhir agar tidak merusak border-radius */
+.profil-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Label (kolom pertama) dibuat sedikit lebih tebal agar rapi */
+.profil-table td:first-child {
+  font-weight: 600;
+  width: 30%; /* Mengunci lebar kolom label agar sejajar */
+}
+
+/* Efek hover pada baris tabel */
+.profil-table tr:hover td {
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+.education-table {
+  width: 100%;
+  border-collapse: separate; /* Wajib agar border-radius berfungsi */
+  border-spacing: 0;
+  background: var(--card);
+  
+  /* INI KUNCINYA: Memberi garis di seluruh sisi luar tabel */
+  border: 1px solid var(--border); 
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Mengatur garis vertikal (kiri & kanan) dan horizontal (bawah) */
+.education-table th, 
+.education-table td {
+  padding: 18px;
+  /* Tambahkan garis bawah pada setiap sel */
+  border-bottom: 1px solid var(--border);
+  /* Tambahkan garis kanan pada setiap sel */
+  border-right: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* HILANGKAN garis kanan di kolom paling terakhir agar tidak dobel dengan border luar */
+.education-table th:last-child, 
+.education-table td:last-child {
+  border-right: none;
+}
+
+/* HILANGKAN garis bawah di baris paling terakhir agar tidak dobel dengan border luar */
+.education-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Menambahkan garis kiri secara eksplisit jika masih terasa tipis */
+.education-table th:first-child, 
+.education-table td:first-child {
+  border-left: none; /* Sudah dicover oleh border utama tabel */
+}
+
+/* Efek hover pada baris juga dibuat sangat tipis agar tetap elegan */
+.profil-table tr:hover, 
+.education-table tr:hover {
+  background: rgba(0, 0, 0, 0.02); 
+  transition: 0.3s;
+}
+
+/* ===============================
+   PENDIDIKAN SAYA (TANPA SHADOW)
+================================= */
+.education-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border); /* Tetap ada border tipis */
+  border-radius: 18px;
+  overflow: hidden;
+  /* box-shadow DIHAPUS */
+  text-align: center;
+}
+
+.education-table th {
+  background: transparent; 
+  color: var(--text);
+  font-weight: bold;
+  padding: 18px;
+  border-bottom: 2px solid var(--border); 
+}
+
+.education-table td {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.education-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Efek hover pada baris juga dibuat sangat tipis agar tetap elegan */
+.profil-table tr:hover, 
+.education-table tr:hover {
+  background: rgba(0, 0, 0, 0.02); 
+  transition: 0.3s;
+}
+
+/* Hover halus tetap ada agar interaktif */
+.profil-table tr:hover, 
+.education-table tr:hover {
+  background: rgba(79, 70, 229, 0.03); 
+  transition: 0.3s;
+}
+
+/* Header Tabel Pendidikan */
+.education-table th {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.education-table td {
+  text-align: center;
+}
+
+/* EFEK HOVER PADA BARIS TABEL */
+.profil-table tr, .education-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.profil-table tr:hover, .education-table tbody tr:hover {
+  background-color: rgba(79, 70, 229, 0.08) !important;
+  cursor: default;
+}
+
+/* Baris Bergantian (Zebra Cross) Pendidikan */
+.education-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+body.dark .education-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ===============================
+   SKILLS & PROJECTS
+================================= */
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.skill label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.bar {
+  height: 12px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transition: width 1.5s ease-out; /* Transisi dipindah ke JS atau dibuat spesifik width */
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.project-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgba(79,70,229,0.15);
+}
+
+/* ===============================
+   KONTAK FORM
+================================= */
+#kontak form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+#kontak input, 
+#kontak textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* EFEK FOKUS PADA INPUT */
+#kontak input:focus, 
+#kontak textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
+}
+
+body.dark #kontak input, 
+body.dark #kontak textarea {
+  background: rgba(30, 41, 59, 0.5);
+  color: white;
+}
+
+#kontak textarea {
+  height: 120px;
+  resize: none;
+}
+
+#kontak .send-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#kontak .send-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* ===============================
+   FOOTER & RESPONSIVE
+================================= */
+footer {
+  text-align: center;
+  padding: 25px;
+  opacity: 0.75;
+  font-size: 13px;
+  margin-top: 40px;
+}
+
+@media(max-width: 900px) {
+  nav {
+    position: static;
+    transform: none;
+    margin: 10px auto;
+    width: 100%;
+    justify-content: center;
+    order: 3;
+    flex-wrap: wrap;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+
+  .hero-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .vertical-photo {
+    max-height: 400px;
+  }
+
+  .skills, .projects {
+    grid-template-columns: 1fr;
+  }
+}
